@@ -5,6 +5,8 @@ const app = express();
 // let express know that I have a views directory and to dig through it for view pages
 app.set('view engine', 'ejs');
 
+app.use(express.static('public'));
+
 // set up simple route for homepage
 app.get('/'(req, res) => {
     res.render('home');
