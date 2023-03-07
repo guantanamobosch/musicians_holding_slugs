@@ -2,7 +2,13 @@
 const express = require('express');
 const app = express();
 
+// let express know that I have a views directory and to dig through it for view pages
+app.set('view engine', 'ejs');
 
+// set up simple route for homepage
+app.get('/'(req, res) => {
+    res.render('home');
+})
 
 // setting up port to listen on for localhost and console logging
 app.listen(4000, () => {
