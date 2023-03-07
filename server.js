@@ -2,6 +2,7 @@
 const express = require('express');
 const app = express();
 
+// brings in the exports from my musicians controller
 const musiciansController = require('./controllers/musicians');
 
 // let express know that I have a views directory and to dig through it for view pages
