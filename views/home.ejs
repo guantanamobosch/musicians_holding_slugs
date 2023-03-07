@@ -1,3 +1,4 @@
-<%- include('./partials/headAndNav.ejs') %>
+<!-- ejs syntax with the '-' means an ejs file is getting passed in, while the '=' is for passing in context, and an object will have to be read -->
+<%- include('./partials/headAndNav.ejs', { pageName: "Home" }) %>
     <h1>My Homepage</h1>
     <%- include('./partials/footer.ejs') %>

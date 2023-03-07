@@ -8,8 +8,13 @@ app.set('view engine', 'ejs');
 app.use(express.static('public'));
 
 // set up simple route for homepage
-app.get('/'(req, res) => {
+app.get('/', (req, res) => {
     res.render('home');
+})
+
+// catch all route to render 404 page whenever anyone uses a nonexistent url with my domain
+app.get('/*', (req, res) => {
+    res.render('404')
 })
 
 // setting up port to listen on for localhost and console logging
