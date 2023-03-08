@@ -12,12 +12,10 @@ const { Musicians } = require('../models')
 // this will be exported at the bottom of the file, and lets server know what to render when the user HTTP requests '/musicians', the string can be empty as it is sort of self-referential to this page
 router.get('/', async (req, res) => {
     try {
+        // you can put a query in the curly brackets here to find specific musicians in the database if you want
         const myMusicians = await Musicians.find({})
         console.log(myMusicians)
-        const context = {
-            musicians: myMusicians
-        }
-        res.render('musicians/index.ejs', context)
+        res.render('musicians/index.ejs', { musicians: myMusicians })
     } catch (err) {
         console.log(err);
         return next();
@@ -26,6 +24,17 @@ router.get('/', async (req, res) => {
 
 router.get('/new', (req, res) => {
     res.render('musicians/new.ejs')
+})
+
+router.get('/:id', async (req, res, next) => {
+    try {
+        const musician = await Musicians.findById(req.params.id);
+        console.log(musician)
+        res.render('musicians/show.ejs', musician)
+    } catch (err) {
+        console.log(err);
+        return next();
+    }
 })
 
 router.post('/abc', async (req, res, next) => {

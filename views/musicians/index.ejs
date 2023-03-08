@@ -1,3 +1,14 @@
 <%- include('../partials/headAndNav.ejs', {pageName: "Musicians" }) %>
     <h1>Here's a list of my Musicians</h1>
-    <%- include('../partials/footer.ejs') %>
+    <% for(let i=0; i < musicians.length; i++) { %>
+        <a href="/musicians/<%=musicians[i]._id %>">
+            <h3>
+                Name: <%= musicians[i].name %>
+            </h3>
+        </a>
+        <img src=<%=musicians[i].image %> alt=<%= musicians[i].name %>>
+            <p>Instrument: <%= musicians[i].instrument %>
+            </p>
+            <hr />
+            <% } %>
+                <%- include('../partials/footer.ejs') %>

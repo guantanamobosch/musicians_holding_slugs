@@ -1,0 +1,8 @@
+<%- include('../partials/headAndNav.ejs', {pageName: "Musicians" }) %>
+    <h1>Name : <%= musician.name %>
+    </h1>
+    <img src=<%=musician.image %> alt=<%= musician.name %>>
+        <p>Instrument: <%= musician.instrument %>
+        </p>
+        <hr />
+        <%- include('../partials/footer.ejs') %>
