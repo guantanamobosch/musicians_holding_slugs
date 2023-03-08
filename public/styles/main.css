@@ -1,3 +1,8 @@
 body {
     background: goldenrod;
 }
+
+nav {
+    display: flex;
+    justify-content: space-evenly;
+}
