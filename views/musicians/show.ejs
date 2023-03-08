@@ -1,8 +1,9 @@
-<%- include('../partials/headAndNav.ejs', {pageName: "Musicians" }) %>
-    <h1>Name : <%= musician.name %>
-    </h1>
-    <img src=<%=musician.image %> alt=<%= musician.name %>>
-        <p>Instrument: <%= musician.instrument %>
-        </p>
-        <hr />
-        <%- include('../partials/footer.ejs') %>
+<%- include('../partials/headAndNav.ejs', {pageName: musician.name + " holding a slug" }) %>
+    <% for(let i=0; i < musician.length; i++) { %>
+        <h1>Name : <%= musician[i].name %>
+        </h1>
+        <img src=<%=musician[i].image %> alt=<%= musician[i].name %>>
+            <p>Instrument: <%= musician[i].instrument %>
+            </p>
+            <% } %>
+                <%- include('../partials/footer.ejs') %>

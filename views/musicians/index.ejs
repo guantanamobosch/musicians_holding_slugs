@@ -1,7 +1,7 @@
 <%- include('../partials/headAndNav.ejs', {pageName: "Musicians" }) %>
     <h1>Here's a list of my Musicians</h1>
     <% for(let i=0; i < musicians.length; i++) { %>
-        <a href="/musicians/<%=musicians[i]._id %>">
+        <a href="/musicians/<%=musicians[i].name %>">
             <h3>
                 Name: <%= musicians[i].name %>
             </h3>
@@ -11,4 +11,8 @@
             </p>
             <hr />
             <% } %>
+                <button>
+
+                    <a href="http://localhost:4000/musicians/seed">Seed Stuff</a>
+                </button>
                 <%- include('../partials/footer.ejs') %>

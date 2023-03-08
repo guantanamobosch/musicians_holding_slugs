@@ -29,8 +29,13 @@ let mySeedData = [
 // this will be exported at the bottom of the file, and lets server know what to render when the user HTTP requests '/musicians', the string can be empty as it is sort of self-referential to this page
 router.get('/', async (req, res) => {
     try {
-        // you can put a query in the curly brackets here to find specific musicians in the database if you want
-        const myMusicians = await Musicians.find({})
+        let myMusicians;
+        if (req.query.s) {
+            myMusicians = await Musicians.find({ name: req.query.s })
+        } else {
+            // you can put a query in the curly brackets here to find specific musicians in the database if you want
+            myMusicians = await Musicians.find({})
+        }
         console.log(myMusicians)
         res.render('musicians/index.ejs', { musicians: myMusicians })
     } catch (err) {
@@ -45,6 +50,7 @@ router.get('/new', (req, res) => {
 
 router.get('/seed', async (req, res, next) => {
     try {
+        const deletedOldOnes = await Musicians.deleteMany({});
         const addArtists = await Musicians.insertMany(mySeedData)
         console.log(addArtists)
         res.redirect('/musicians')
@@ -54,10 +60,11 @@ router.get('/seed', async (req, res, next) => {
     }
 })
 
-router.get('/:id', async (req, res, next) => {
+router.get('/:name', async (req, res, next) => {
     try {
-        const musician = await Musicians.findById(req.params.id);
-        console.log(musician)
+        console.log(req.params)
+        const musician = await Musicians.find({ name: req.params.name });
+        // console.log(musician)
         res.render('musicians/show.ejs', { musician: musician })
     } catch (err) {
         console.log(err);
@@ -73,6 +80,16 @@ router.post('/abc', async (req, res, next) => {
         res.redirect('/musicians');
     } catch (err) {
         console.log(err);
+        return next();
+    }
+})
+
+router.delete('/:id', async (req, res, next) => {
+    try {
+        console.log(req.params);
+        const itemGettingDeleted = await Musicians.findByIdAndDelete(req.params.id);
+    } catch (stuff) {
+        console.log(stuff);
         return next();
     }
 })
