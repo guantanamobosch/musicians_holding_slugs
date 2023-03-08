@@ -1,0 +1,21 @@
+<%- include('../partials/headAndNav', {pageName: "Create a new musician holding a slug" }) %>
+
+    <h1>Create a new Musician Holding a Slug</h1>
+    <!-- action says where the form is going, what is the URL -->
+    <form method="POST" action="/musicians/abc">
+        <div>
+            <label for="name">Enter the artist's name</label>
+            <input type="text" name="name" id="name">
+        </div>
+        <div>
+            <label for="image">Enter the URL for the image</label>
+            <input type="text" name="image" id="image">
+        </div>
+        <div>
+            <label for="instrument">What instrument are they holding?</label>
+            <input type="text" name="instrument" id="instrument">
+        </div>
+        <input type="submit" value="Submit new musician">
+    </form>
+
+    <%- include('../partials/footer') %>

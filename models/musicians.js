@@ -14,8 +14,11 @@ const musiciansSchema = new mongoose.Schema(
             required: [true, "Please provide the URL for an image"],
             unique: [true, "I don't want the same slug pictures multiple times"]
         },
-        // instrument field is not required, but is a string if somebody does fill it out
-        instrument: String
+        // instrument field is not required, but is a string if somebody does fill it out and the default is guitar
+        instrument: {
+            type: String,
+            default: "Guitar"
+        }
     },
     {
         timestamps: true

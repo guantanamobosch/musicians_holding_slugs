@@ -2,13 +2,15 @@ const express = require('express');
 
 // using router is like using app in the server, but with router it's easier to express all the routes which we make in a controller all in one go
 const router = express.Router();
+
+
 // this is saying that I want the value of the musicians from the object that was exported. this is the ES6 destructuring syntax. if I point it to a directory, it automatically assumes an index.js file
 const { Musicians } = require('../models')
 
 
 
 // this will be exported at the bottom of the file, and lets server know what to render when the user HTTP requests '/musicians', the string can be empty as it is sort of self-referential to this page
-router.get('', async (req, res) => {
+router.get('/', async (req, res) => {
     try {
         const myMusicians = await Musicians.find({})
         console.log(myMusicians)
@@ -22,10 +24,15 @@ router.get('', async (req, res) => {
     }
 })
 
-router.post('/', async (req, res, next) => {
+router.get('/new', (req, res) => {
+    res.render('musicians/new.ejs')
+})
+
+router.post('/abc', async (req, res, next) => {
     try {
-        const myNewMusician = await Musicians.create(req.body);
-        console.log(myNewMusician);
+        const newArtist = Musicians.create(req.body);
+        console.log(newArtist);
+        res.redirect('/musicians');
     } catch (err) {
         console.log(err);
         return next();
