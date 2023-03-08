@@ -30,7 +30,7 @@ router.get('/:id', async (req, res, next) => {
     try {
         const musician = await Musicians.findById(req.params.id);
         console.log(musician)
-        res.render('musicians/show.ejs', musician)
+        res.render('musicians/show.ejs', { musician: musician })
     } catch (err) {
         console.log(err);
         return next();
