@@ -20,6 +20,9 @@ app.get('/', (req, res) => {
     res.render('home');
 })
 
+
+
+
 // this is saying that I want to use all the routes from my musicians controller, and the first argument sets a new base URL for those routes
 app.use('/musicians', musiciansController);
 

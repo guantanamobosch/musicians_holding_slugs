@@ -26,6 +26,35 @@ router.get('/new', (req, res) => {
     res.render('musicians/new.ejs')
 })
 
+router.get('/seed', async (req, res, next) => {
+    try {
+        const mySeedData = [
+            {
+                name: "Keith Richards",
+                image: "https://www.soundaffects.com/blog/wp-content/uploads/2014/08/tumblr_n9oi9jo6xR1thoekio1_500.jpg"
+            },
+            {
+                name: "Prince",
+                image: "https://www.soundaffects.com/blog/wp-content/uploads/2014/08/tumblr_n90ek1GlKF1thoekio1_500.jpg"
+            },
+            {
+                name: "John Mayer",
+                image: "https://www.soundaffects.com/blog/wp-content/uploads/2014/08/tumblr_n9sxudWDyC1thoekio1_1280.jpg"
+            },
+            {
+                name: "Matt Bellamy",
+                image: "https://www.soundaffects.com/blog/wp-content/uploads/2014/08/tumblr_n9mbgxN2121thoekio1_400.jpg"
+            }
+        ]
+        const addArtists = await Musicians.insertMany(mySeedData)
+        console.log(addArtists)
+        res.redirect('/musicians')
+    } catch (err) {
+        console.log(err);
+        return next();
+    }
+})
+
 router.get('/:id', async (req, res, next) => {
     try {
         const musician = await Musicians.findById(req.params.id);
